@@ -11,6 +11,7 @@ const StyledSiteWrapContainer = styled.div`
   max-width: ${props => props.theme.elementSizes.siteWrap};
   margin: auto;
   padding: ${props => props.theme.space[3]}px;
+  text-align: center;
 `
 
 //

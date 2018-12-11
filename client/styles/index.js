@@ -26,6 +26,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     color: ${theme.colors.fontGray};
     font-family: ${theme.fonts.body};
+    letter-spacing: 0.05px;
   }
   h1,
   h2,

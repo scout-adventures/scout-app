@@ -93,6 +93,9 @@ export const GlobalStyle = createGlobalStyle`
       color: white;
     }
   }
+  a.fit-content {
+    width: fit-content;
+  }
   .full-height {
     height: 100%;
   }

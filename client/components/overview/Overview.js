@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {Flex, Box} from '@rebass/grid'
 import styled from 'styled-components'
 
-import {breakpointMappings} from '../styles/sizes'
+import {breakpointMappings} from '../../styles/sizes'
 
 //
 // --- Styled Components ---
@@ -12,6 +12,7 @@ const StyledOverview = styled.div`
   padding-bottom: ${props => props.theme.space[8]}px;
   background-color: ${props => props.theme.colors.whiteGray};
   border-top: 1px solid ${props => props.theme.colors.lightGray};
+  border-bottom: 1px solid ${props => props.theme.colors.lightGray};
 `
 
 const StyledOverviewSiteWrapContainer = styled(Flex)`
@@ -125,7 +126,7 @@ const Overview = () => {
             </Box>
             <Box>
               <Link className="secondary" to="/gear">
-                <h5>See Our Breakdown ></h5>
+                <h5>See The Breakdown ></h5>
               </Link>
             </Box>
           </StyledOverviewSection>

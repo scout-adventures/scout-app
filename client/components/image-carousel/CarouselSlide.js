@@ -93,9 +93,7 @@ const StyledTitle = styled.h1`
   font-weight: 600;
 `
 
-const StyledSubtitle = styled.p`
-  font-style: italic;
-`
+const StyledSubtitle = styled.p``
 const StyledLink = styled(Link)`
   width: 80%;
   opacity: 1;

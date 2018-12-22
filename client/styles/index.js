@@ -26,6 +26,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     color: ${theme.colors.fontGray};
     font-family: ${theme.fonts.body};
+    letter-spacing: 0.05px;
   }
   h1,
   h2,
@@ -75,6 +76,26 @@ export const GlobalStyle = createGlobalStyle`
       color: ${theme.colors.secondaryBlue};
     }
   }
+  a.outline {
+    background-color: white;
+    color: #4c8aa0;
+    font-family: PT Sans,sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px;
+    text-transform: uppercase;
+    transition: all 0.5s;
+    border: 1.25px solid #4c8aa0;
+
+    :hover {
+      background-color: ${theme.colors.secondaryBlue};
+      border-color: ${theme.colors.secondaryBlue};
+      color: white;
+    }
+  }
+  a.fit-content {
+    width: fit-content;
+  }
   .full-height {
     height: 100%;
   }
@@ -86,6 +107,9 @@ export const GlobalStyle = createGlobalStyle`
   }
   .mb-three {
     margin-bottom: ${theme.space[3]}px;
+  }
+  .mt-three {
+    margin-top: ${theme.space[3]}px;
   }
   .center-text {
     text-align: center;

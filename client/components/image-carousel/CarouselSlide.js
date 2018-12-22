@@ -22,6 +22,8 @@ const StyledSlideContainer = styled.div`
     background-position-x: ${props =>
       props.imgSrc.indexOf('adventure') > -1 && '-50pc'};
     background-position-y: ${props =>
+      props.imgSrc.indexOf('hiking') > -1 && '-10rem'}
+    background-position-y: ${props =>
       props.imgSrc.indexOf('camping') > -1 && '-20rem'};
   }
 
@@ -58,7 +60,6 @@ const StyledCaptionContainer = styled(Flex)`
   width: 80%;
 
   ${breakpointMappings.lg} {
-    opacity: 1;
     max-width: 50%;
     margin-right: ${props =>
       props.alignment === 'top-right' ? `${props.theme.space[8]}px` : 'auto'};
@@ -92,9 +93,7 @@ const StyledTitle = styled.h1`
   font-weight: 600;
 `
 
-const StyledSubtitle = styled.p`
-  font-style: italic;
-`
+const StyledSubtitle = styled.p``
 const StyledLink = styled(Link)`
   width: 80%;
   opacity: 1;

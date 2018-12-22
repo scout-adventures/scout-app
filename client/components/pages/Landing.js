@@ -1,13 +1,19 @@
 import React from 'react'
 
 import Carousel from '../image-carousel/Carousel'
-import Mission from '../mission/Mission'
+import Overview from '../overview/Overview'
+import Services from '../landing-services/Services'
+import Banner from '../landing-banner/Banner'
+import Reviews from '../landing-reviews/Reviews'
 
 const Landing = () => {
   return (
     <div>
       <Carousel />
-      <Mission />
+      <Overview />
+      <Services />
+      <Banner />
+      <Reviews />
     </div>
   )
 }

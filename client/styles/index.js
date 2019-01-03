@@ -36,12 +36,11 @@ export const GlobalStyle = createGlobalStyle`
   h6 {
     font-family: ${theme.fonts.heading};
     font-weight: 500;
-    letter-spacing: 0.6px;
     margin: 0;
   }
   h1.logo {
     color: ${theme.colors.primaryGreen};
-    font-size: 45px;
+    font-size: 30px;
   }
   a {
     color: ${theme.colors.fontGray};
@@ -54,7 +53,6 @@ export const GlobalStyle = createGlobalStyle`
     font-size: ${theme.fontSizes[3]}px;
     font-weight: 500;
     padding: ${theme.space[3]}px;
-    text-transform: uppercase;
     transition: all 0.5s;
 
     :hover {
@@ -69,7 +67,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${theme.fonts.heading};
     font-size: ${theme.fontSizes[3]}px;
     font-weight: 500;
-    text-transform: uppercase;
     transition: all 0.5s;
 
     :hover {
@@ -83,7 +80,6 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 18px;
     font-weight: 500;
     padding: 12px;
-    text-transform: uppercase;
     transition: all 0.5s;
     border: 1.25px solid #4c8aa0;
 
@@ -95,6 +91,9 @@ export const GlobalStyle = createGlobalStyle`
   }
   a.fit-content {
     width: fit-content;
+  }
+  a.sm-text {
+    font-size: 1rem;
   }
   .full-height {
     height: 100%;

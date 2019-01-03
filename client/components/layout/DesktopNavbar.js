@@ -5,18 +5,34 @@ import styled from 'styled-components'
 import {Flex} from '@rebass/grid'
 
 import {breakpointMappings} from '../../styles/sizes'
+import CategoryDropDown from './CategoryDropDown'
+import DesktopLoginSection from './DesktopLoginSection'
 import HideBreakPoint from '../layout/HideBreakpoint'
 import MobileMenu from './MobileMenu'
 import Logo from '../brand/Logo'
+import Search from '../search/Search'
 
 //
 // --- Styled Components ---
-const StyledDesktopNavbarContainer = styled.div`
+const StyledSiteWrap = styled(Flex)`
   max-width: ${props => props.theme.elementSizes.siteWrap};
   margin: auto;
+  width: 100%;
+`
+
+const StyledDesktopNavbarContainer = styled(Flex)`
   padding: ${props => props.theme.space[2]}px;
   padding-bottom: 0;
+  width: 100%;
 `
+
+const StyledDesktopCategoryContainer = styled(Flex)`
+  margin-top: ${props => props.theme.space[2]}px;
+  margin-bottom: ${props => props.theme.space[2]}px;
+  border-top: 1px solid ${props => props.theme.colors.lightGray};
+  border-bottom: 1px solid ${props => props.theme.colors.lightGray};
+`
+
 const StyledDesktopAndMobileController = styled(Flex)`
   justify-content: space-between;
   position: relative;
@@ -36,20 +52,28 @@ const StyledLink = styled(Flex)`
   align-items: center;
   border-bottom: 3px solid transparent;
   height: 100%;
-  margin-left: ${props => props.theme.space[4]}px;
   transition: all 0.5s;
+  border-color: ${props =>
+    props.isActive ? props.theme.colors.primaryGreen : 'transparent'};
 
   :hover {
     border-color: ${props => props.theme.colors.primaryGreen};
     cursor: pointer;
   }
 `
+const StyledLinkContent = styled.h4`
+  position: relative;
+  transform: 'translateY(3px)';
+  margin-top: ${props => props.theme.space[2]}px;
+  margin-bottom: ${props => props.theme.space[1]}px;
+`
 
 //
 // --- Desktop Nav Bar ---
 class DesktopNavbar extends React.Component {
   state = {
-    isMobileMenuOpen: false
+    isMobileMenuOpen: false,
+    activeCategory: undefined
   }
 
   handleOpen = () => {
@@ -60,9 +84,13 @@ class DesktopNavbar extends React.Component {
     this.setState({isMobileMenuOpen: false})
   }
 
+  handleActiveCategoryChange = categoryIndex => {
+    this.setState({activeCategory: categoryIndex})
+  }
+
   render() {
     const {links} = this.props
-    const {isMobileMenuOpen} = this.state
+    const {isMobileMenuOpen, activeCategory} = this.state
 
     return (
       <div>
@@ -73,42 +101,70 @@ class DesktopNavbar extends React.Component {
             onCloseClick={this.handleClose}
           />
         </HideBreakPoint>
-        <StyledDesktopNavbarContainer>
-          <StyledDesktopAndMobileController>
-            <Flex>
-              <Link to="/">
-                <Logo />
-              </Link>
+        <StyledSiteWrap>
+          <StyledDesktopNavbarContainer flexDirection="column">
+            <StyledDesktopAndMobileController>
+              <Flex>
+                <Link to="/">
+                  <Logo />
+                </Link>
+                <Search />
+              </Flex>
+              <HideBreakPoint lg>
+                <StyledHamburgerMenu
+                  className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'}
+                  onClick={
+                    isMobileMenuOpen ? this.handleClose : this.handleOpen
+                  }
+                />
+              </HideBreakPoint>
               <HideBreakPoint xs sm md>
-                <Flex alignItems="center" ml={3} className="full-height">
-                  {links.map(link => (
-                    <StyledLink key={`nav-link-${link.text.toLowerCase()}`}>
-                      <h3 style={{transform: 'translateY(3px)'}}>
-                        <Link to={link.path}>{link.text.toUpperCase()}</Link>
-                      </h3>
-                    </StyledLink>
-                  ))}
+                <Flex alignItems="center" className="full-height">
+                  <DesktopLoginSection />
                 </Flex>
               </HideBreakPoint>
-            </Flex>
-            <HideBreakPoint lg>
-              <StyledHamburgerMenu
-                className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'}
-                onClick={isMobileMenuOpen ? this.handleClose : this.handleOpen}
-              />
-            </HideBreakPoint>
-            <HideBreakPoint xs sm md>
-              <Flex alignItems="center" className="full-height">
-                <Link className="secondary" to="/login">
-                  Log In
-                </Link>
-                <Link className="primary ml-three" to="/signup">
-                  Sign Up
-                </Link>
-              </Flex>
-            </HideBreakPoint>
-          </StyledDesktopAndMobileController>
-        </StyledDesktopNavbarContainer>
+            </StyledDesktopAndMobileController>
+          </StyledDesktopNavbarContainer>
+        </StyledSiteWrap>
+        <HideBreakPoint xs sm md>
+          <span onMouseLeave={() => this.handleActiveCategoryChange(undefined)}>
+            <StyledDesktopCategoryContainer className="full-height">
+              <StyledSiteWrap justifyContent="space-around">
+                {links.map((link, index) => (
+                  <StyledLink
+                    key={`nav-link-${link.text.toLowerCase()}`}
+                    isActive={index === activeCategory}
+                  >
+                    <StyledLinkContent
+                      onMouseEnter={() =>
+                        this.handleActiveCategoryChange(index)
+                      }
+                    >
+                      <Link to={link.path}>{link.text}</Link>
+                    </StyledLinkContent>
+                  </StyledLink>
+                ))}
+              </StyledSiteWrap>
+            </StyledDesktopCategoryContainer>
+            {links.map((link, index) => {
+              if (
+                !link.PageLevelCategories ||
+                !link.PageLevelCategories.length
+              ) {
+                return null
+              }
+
+              return (
+                <CategoryDropDown
+                  key={`category-drop-down-${link.text}`}
+                  categoryTitle={link.text}
+                  categories={link.PageLevelCategories}
+                  display={index === activeCategory ? true : undefined}
+                />
+              )
+            })}
+          </span>
+        </HideBreakPoint>
       </div>
     )
   }

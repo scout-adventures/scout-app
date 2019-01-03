@@ -1,11 +1,13 @@
+const Categories = require('./categories')
+const PageLevelCategories = require('./page-level-categories')
 const User = require('./user')
+const SubCategories = require('./sub-category')
 
 /**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
+ * Associations
  */
+Categories.hasMany(PageLevelCategories, {as: 'PageLevelCategories'})
+PageLevelCategories.hasMany(SubCategories, {as: 'SubCategories'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -14,5 +16,8 @@ const User = require('./user')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  Categories,
+  PageLevelCategories,
+  User,
+  SubCategories
 }

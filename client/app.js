@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Navbar from './components/layout/Navbar'
+import ConnectedNavBar from './containers/layout/ConnectedNavBar'
 import Footer from './components/layout/Footer'
 import Routes from './routes'
 import {GlobalStyle} from './styles'
@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div>
       <GlobalStyle />
-      <Navbar />
+      <ConnectedNavBar />
       <Routes />
       <Footer />
     </div>

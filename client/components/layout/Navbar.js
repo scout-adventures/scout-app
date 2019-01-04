@@ -16,14 +16,19 @@ const StyledNavbar = styled.header`
 //
 // --- Nav Bar ---
 const Navbar = props => {
-  const {links} = props
+  const {currentUser, isUserLoggedIn, links, onLogOut} = props
   if (!links.length || _.isEmpty(links)) {
     return null
   }
 
   return (
     <StyledNavbar>
-      <DesktopNavbar links={links} />
+      <DesktopNavbar
+        currentUser={currentUser}
+        isUserLoggedIn={isUserLoggedIn}
+        links={links}
+        onLogOut={onLogOut}
+      />
     </StyledNavbar>
   )
 }

@@ -89,7 +89,7 @@ class DesktopNavbar extends React.Component {
   }
 
   render() {
-    const {links} = this.props
+    const {currentUser, isUserLoggedIn, links, onLogOut} = this.props
     const {isMobileMenuOpen, activeCategory} = this.state
 
     return (
@@ -120,7 +120,11 @@ class DesktopNavbar extends React.Component {
               </HideBreakPoint>
               <HideBreakPoint xs sm md>
                 <Flex alignItems="center" className="full-height">
-                  <DesktopLoginSection />
+                  <DesktopLoginSection
+                    currentUser={currentUser}
+                    isUserLoggedIn={isUserLoggedIn}
+                    onLogOut={onLogOut}
+                  />
                 </Flex>
               </HideBreakPoint>
             </StyledDesktopAndMobileController>

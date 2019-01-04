@@ -68,6 +68,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: ${theme.fontSizes[3]}px;
     font-weight: 500;
     transition: all 0.5s;
+    cursor: pointer;
 
     :hover {
       color: ${theme.colors.secondaryBlue};

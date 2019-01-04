@@ -54,6 +54,7 @@
     "polished": "^2.3.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
+    "react-click-outside": "github:tj/react-click-outside",
     "react-dom": "^16.4.2",
     "react-media": "^1.8.0",
     "react-redux": "^5.0.2",

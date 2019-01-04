@@ -1,3 +1,4 @@
+import * as _ from 'lodash'
 import axios from 'axios'
 import history from '../history'
 
@@ -46,11 +47,11 @@ export const auth = (email, password, method) => async dispatch => {
   }
 }
 
-export const logout = () => async dispatch => {
+export const logOut = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
-    history.push('/login')
+    history.push('/')
   } catch (err) {
     console.error(err)
   }
@@ -69,3 +70,9 @@ export default function(state = defaultUser, action) {
       return state
   }
 }
+
+/**
+ * SELECTORS
+ */
+export const currentUserSelector = state => _.get(state, 'user', {})
+export const isUserLoggedInSelector = state => !!_.get(state, 'user.id', '')

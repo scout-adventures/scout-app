@@ -5,14 +5,14 @@ import {Flex} from '@rebass/grid'
 //
 // --- Styled Components ---
 export const StyledIcon = styled.img`
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
 `
 
 //
 // --- Logo Component ---
 
-const Logo = props => {
+const Logo = () => {
   return (
     <Flex alignItems="center">
       <StyledIcon src="/icons/mountain.svg" />
